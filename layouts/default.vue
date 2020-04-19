@@ -4,7 +4,10 @@
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
+      width="100%"
+      hide-overlay
       fixed
+      temporary
       app
     >
       <v-list>
@@ -22,75 +25,43 @@
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
+
+        <v-list-item @click="closeNav">
+          <v-list-item-action>
+            <v-icon class="mdi mdi-close"></v-icon>
+          </v-list-item-action>
+          <v-list-item-title>
+            Close
+          </v-list-item-title>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
+
+    <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
+      <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
+
+      <v-toolbar-title> Holger Mueller</v-toolbar-title>
       <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
     </v-app-bar>
     <v-content>
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :fixed="fixed"
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+
+    <v-footer class="text-center" :fixed="fixed" app>
+      <span>&copy; 2020- {{ new Date().getFullYear() }} </span>
+      Holger Mueller
     </v-footer>
   </v-app>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       clipped: false,
       drawer: false,
@@ -98,19 +69,35 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Welcome',
+          title: 'Home',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          icon: 'mdi-pencil-outline',
+          title: 'Previous Writings',
+          to: '/previous/previous'
+        },
+        {
+          icon: 'mdi-book-account',
+          title: 'About',
+          to: '/about/about'
+        },
+        {
+          icon: 'mdi-laptop',
+          title: 'Contact',
+          to: '/contact/contact'
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js'
+    }
+  },
+
+  methods: {
+    closeNav() {
+      this.drawer = false
     }
   }
 }
