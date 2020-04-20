@@ -1,25 +1,19 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <v-card>
-        <v-card-title class="headline text-center">
-          Holger Mueller
-        </v-card-title>
-        <v-card-subtitle>Writer | Traveller | Enthusiast</v-card-subtitle>
-        <v-card-text> </v-card-text>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt> </v-btn>
-        </v-card-actions>
-      </v-card>
+  <div id="home">
+    <v-card class="page-header">
+      <v-card-title class="headline text-center">
+        Holger Mueller
+      </v-card-title>
+      <v-card-subtitle></v-card-subtitle>
+      <v-card-text> </v-card-text>
+    </v-card>
 
-      <v-card>
-        <v-card-title>Title will appear here</v-card-title>
-        <v-card-subtitle>More info here</v-card-subtitle>
-        <v-card-text>Body of story will appear here.</v-card-text>
-      </v-card>
-    </v-flex>
-  </v-layout>
+    <v-card class="recent-post">
+      <v-card-title>Title will appear here</v-card-title>
+      <v-card-subtitle>More info here</v-card-subtitle>
+      <v-card-text>Body of story will appear here.</v-card-text>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -27,3 +21,21 @@ export default {
   components: {}
 }
 </script>
+
+<style scoped>
+app {
+  background-image: url('~assets/background.png');
+}
+
+.page-header {
+  width: 55%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2%;
+}
+
+.recent-post {
+  width: 55%;
+  margin: 3% auto 0;
+}
+</style>

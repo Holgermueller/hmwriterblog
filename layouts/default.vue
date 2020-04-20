@@ -43,7 +43,12 @@
         <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
 
-      <v-toolbar-title> Holger Mueller</v-toolbar-title>
+      <v-toolbar-title>
+        <strong to="/">
+          Holger Mueller
+        </strong>
+        Writer | Traveller | Enthusiast</v-toolbar-title
+      >
       <v-spacer />
     </v-app-bar>
     <v-content>
@@ -52,9 +57,31 @@
       </v-container>
     </v-content>
 
-    <v-footer class="text-center" :fixed="fixed" app>
-      <span>&copy; 2020- {{ new Date().getFullYear() }} </span>
-      Holger Mueller
+    <v-footer padless :fixed="fixed" app>
+      <v-card flat tile>
+        <v-card-title>
+          <h3>
+            <a href="https://twitter.com/thatHMMueller">
+              <span class="mdi mdi-twitter"></span
+            ></a>
+          </h3>
+
+          <v-spacer></v-spacer>
+
+          <h3>
+            <a href="https://www.instagram.com/holgerj9">
+              <span class="mdi mdi-instagram"></span
+            ></a>
+          </h3>
+        </v-card-title>
+
+        <v-divider></v-divider>
+
+        <v-card-subtitle class="text-center">
+          <span>&copy; 2020- {{ new Date().getFullYear() }} </span>
+          Holger Mueller
+        </v-card-subtitle>
+      </v-card>
     </v-footer>
   </v-app>
 </template>
