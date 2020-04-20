@@ -45,11 +45,13 @@
       </v-btn>
 
       <v-toolbar-title>
-        <strong to="/" class="name">
+        <strong to="/" class="title name">
           Holger Mueller
         </strong>
-        Writer | Traveller | Enthusiast</v-toolbar-title
-      >
+        <small class="overline">
+          Writer | Traveller | Enthusiast
+        </small>
+      </v-toolbar-title>
       <v-spacer />
     </v-app-bar>
 
@@ -58,33 +60,6 @@
         <nuxt />
       </v-container>
     </v-content>
-
-    <v-footer padless :fixed="fixed" app>
-      <v-card class="footer" flat tile>
-        <v-card-title>
-          <h3>
-            <a href="https://twitter.com/thatHMMueller">
-              <span class="mdi mdi-twitter"></span
-            ></a>
-          </h3>
-
-          <v-spacer></v-spacer>
-
-          <h3>
-            <a href="https://www.instagram.com/holgerj9">
-              <span class="mdi mdi-instagram"></span
-            ></a>
-          </h3>
-        </v-card-title>
-
-        <v-divider></v-divider>
-
-        <v-card-subtitle class="copy">
-          <span class="copy">&copy; 2020- {{ new Date().getFullYear() }} </span>
-          Holger Mueller
-        </v-card-subtitle>
-      </v-card>
-    </v-footer>
   </v-app>
 </template>
 
@@ -142,8 +117,7 @@ export default {
   background-image: url('~assets/backgroundimagestone.png');
 }
 
-.nav-drawer,
-.name {
+.nav-drawer {
   background-color: #8fc1e3;
 }
 
@@ -153,19 +127,5 @@ app-bar {
 
 .name {
   margin-right: 0.5em;
-}
-
-.footer {
-  width: 100%;
-  background-color: #31708e;
-}
-
-a,
-.copy {
-  color: #f7f9fb;
-}
-
-.copy {
-  text-align: center;
 }
 </style>

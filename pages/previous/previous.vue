@@ -1,12 +1,16 @@
 <template>
   <div id="previousWritingsIndexPage">
-    <v-card class="page-header">
-      <v-card-title>Previous Posts</v-card-title>
+    <section class="page-header-section">
+      <h1 class="page-header display-2 font-weight-bold">
+        Previous Posts
+      </h1>
 
-      <v-card-subtitle>
+      <hr class="page-header font-weight-bold" />
+
+      <h3 class="page-header title font-weight-bold">
         Check out some of my previous writings
-      </v-card-subtitle>
-    </v-card>
+      </h3>
+    </section>
 
     <v-container class="previous-entries-container" fluid>
       <v-layout row wrap>
@@ -36,11 +40,20 @@ export default {
 </script>
 
 <style scoped>
+.page-header {
+  color: #f7f9fb;
+  width: 55%;
+  margin: 3% auto 0;
+  text-align: center;
+  padding: 0;
+}
+
 .previous-entries-container {
+  margin-top: 0;
   width: 75%;
 }
 
 .preview-card {
-  margin: 8%;
+  margin: 4%;
 }
 </style>

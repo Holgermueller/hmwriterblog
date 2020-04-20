@@ -22,10 +22,38 @@
           </v-flex>
         </v-form>
       </v-card-text>
+
+      <section id="contactErrors">
+        <v-alert
+          type="error"
+          border="top"
+          colored-border
+          outlined
+          width="75%"
+          v-if="errors.length"
+          dismissible
+          class="alert"
+        >
+          <b>Please fix the following error(s):</b>
+          <ul class="errors-list">
+            <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+          </ul>
+        </v-alert>
+      </section>
+
       <v-card-actions>
-        <v-btn @click="clearContactForm" x-large>Clear</v-btn>
+        <v-btn @click="clearContactForm" color="error" x-large tile
+          >Clear</v-btn
+        >
         <v-spacer></v-spacer>
-        <v-btn @click="sendMessage" x-large>Submit</v-btn>
+        <v-btn
+          @click.prevent="checkFormData"
+          color="primary"
+          x-large
+          tile
+          :disabled="name === '' || email === '' || message === ''"
+          >Submit</v-btn
+        >
       </v-card-actions>
     </v-card>
   </div>
@@ -39,17 +67,42 @@ export default {
     return {
       name: '',
       email: '',
-      message: ''
+      message: '',
+      errors: []
     }
   },
 
   methods: {
+    checkFormData() {
+      if (!this.name && !this.email && !this.message) {
+        this.errors.push('Please fill out all the fields.')
+      } else if (!this.name) {
+        this.errors.push('Name requiredbundleRenderer.renderToString')
+      } else if (!this.email) {
+        this.errors.push('Email required.')
+      } else if (!this.message) {
+        this.errors.push('Message required.')
+      } else {
+        this.sendMessage()
+      }
+    },
+
+    checkValidEmail(email) {
+      const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+      return regex.test(this.email)
+    },
+
+    sendMessage() {
+      console.log('Message sent!')
+      this.clearContactForm()
+    },
+
     clearContactForm() {
       this.$refs.form.reset()
     },
 
-    sendMessage() {
-      this.clearContactForm()
+    dismissFormErrors() {
+      this.errors = []
     }
   }
 }
@@ -60,5 +113,18 @@ export default {
   width: 55%;
   margin-left: auto;
   margin-right: auto;
+}
+
+#contactErrors {
+  margin: 2% 0;
+  text-align: center;
+}
+
+.alert {
+  margin: 0 auto;
+}
+
+.errors-list {
+  list-style: none;
 }
 </style>
