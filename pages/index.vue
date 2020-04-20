@@ -28,10 +28,12 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2%;
+  background-color: #f7f9fb;
 }
 
 .recent-post {
   width: 55%;
   margin: 3% auto 0;
+  background-color: #f7f9fb;
 }
 </style>

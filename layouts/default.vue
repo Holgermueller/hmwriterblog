@@ -45,7 +45,7 @@
       </v-btn>
 
       <v-toolbar-title>
-        <strong to="/">
+        <strong to="/" class="name">
           Holger Mueller
         </strong>
         Writer | Traveller | Enthusiast</v-toolbar-title
@@ -79,8 +79,8 @@
 
         <v-divider></v-divider>
 
-        <v-card-subtitle class="text-center">
-          <span>&copy; 2020- {{ new Date().getFullYear() }} </span>
+        <v-card-subtitle class="copy">
+          <span class="copy">&copy; 2020- {{ new Date().getFullYear() }} </span>
           Holger Mueller
         </v-card-subtitle>
       </v-card>
@@ -139,15 +139,33 @@ export default {
 
 <style scoped>
 .app-background {
-  background-image: url('~assets/background.png');
+  background-image: url('~assets/backgroundimagestone.png');
 }
 
-.nav-drawer {
-  background-color: #2e9cca;
+.nav-drawer,
+.name {
+  background-color: #8fc1e3;
+}
+
+app-bar {
+  background-color: #31708e;
+}
+
+.name {
+  margin-right: 0.5em;
 }
 
 .footer {
-  background-color: #25274d;
-  color: whitesmoke;
+  width: 100%;
+  background-color: #31708e;
+}
+
+a,
+.copy {
+  color: #f7f9fb;
+}
+
+.copy {
+  text-align: center;
 }
 </style>
