@@ -23,10 +23,6 @@ export default {
 </script>
 
 <style scoped>
-app {
-  background-image: url('~assets/background.png');
-}
-
 .page-header {
   width: 55%;
   margin-left: auto;

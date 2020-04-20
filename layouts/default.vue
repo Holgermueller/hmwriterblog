@@ -9,6 +9,7 @@
       fixed
       temporary
       app
+      class="nav-drawer"
     >
       <v-list>
         <v-list-item
@@ -51,14 +52,15 @@
       >
       <v-spacer />
     </v-app-bar>
-    <v-content>
+
+    <v-content class="app-background">
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
 
     <v-footer padless :fixed="fixed" app>
-      <v-card flat tile>
+      <v-card class="footer" flat tile>
         <v-card-title>
           <h3>
             <a href="https://twitter.com/thatHMMueller">
@@ -100,6 +102,11 @@ export default {
           to: '/'
         },
         {
+          icon: 'mdi-progress-wrench',
+          title: 'works In Progress',
+          to: '/wip/wip'
+        },
+        {
           icon: 'mdi-pencil-outline',
           title: 'Previous Writings',
           to: '/previous/previous'
@@ -129,3 +136,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.app-background {
+  background-image: url('~assets/background.png');
+}
+
+.nav-drawer {
+  background-color: #2e9cca;
+}
+
+.footer {
+  background-color: #25274d;
+  color: whitesmoke;
+}
+</style>
