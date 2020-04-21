@@ -6,6 +6,7 @@
         <v-form ref="form">
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
+              type="text"
               class="input-field"
               v-model="name"
               label="Name"
@@ -15,6 +16,7 @@
 
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
+              type="text"
               class="input-field"
               v-model="email"
               label="Email"
@@ -24,6 +26,7 @@
 
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-textarea
+              type="text"
               class="input-field"
               v-model="message"
               label="Message"
@@ -36,12 +39,12 @@
 
       <section id="contactErrors">
         <v-alert
+          v-model="alert"
           type="error"
           border="top"
-          colored-border
-          outlined
           width="75%"
           v-if="errors.length"
+          dark
           dismissible
           class="alert"
         >
@@ -49,6 +52,7 @@
           <ul class="errors-list">
             <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
           </ul>
+          <b>Clear form to continue.</b>
         </v-alert>
       </section>
 
@@ -59,6 +63,7 @@
         <v-spacer></v-spacer>
         <v-btn
           @click.prevent="checkFormData"
+          ref="submit"
           color="#31708e"
           class="text--white"
           x-large
@@ -80,7 +85,8 @@ export default {
       name: '',
       email: '',
       message: '',
-      errors: []
+      errors: [],
+      alert: true
     }
   },
 
@@ -113,10 +119,18 @@ export default {
 
     clearContactForm() {
       this.$refs.form.reset()
+      this.name = ''
+      this.email = ''
+      this.message = ''
+      this.alert = false
     },
 
     dismissFormErrors() {
       this.errors = []
+    },
+
+    resetSubmit() {
+      this.$refs.submit.reset()
     }
   }
 }
