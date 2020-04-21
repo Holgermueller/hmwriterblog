@@ -1,18 +1,12 @@
 <template>
-  <div class="post">
-    <v-card class="post-header">
-      <v-card-title class="post-headline">
-        post title will appear here
-      </v-card-title>
+  <div class="single-wip">
+    <v-card>
+      <v-card-title>Title will appear here</v-card-title>
 
-      <v-divider></v-divider>
-
-      <v-card-subtitle>
-        More info will appear here
-      </v-card-subtitle>
+      <v-card-subtitle>More data here</v-card-subtitle>
 
       <v-card-text>
-        body will appear header.
+        Body of story will appear here.
       </v-card-text>
 
       <v-card-actions class="footer">
@@ -27,7 +21,7 @@
 
 <script>
 export default {
-  name: 'SinglePreviousPost',
+  Name: 'SingleWIPPost',
 
   data() {
     return {}

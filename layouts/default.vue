@@ -92,7 +92,7 @@ export default {
         },
         {
           icon: 'mdi-progress-wrench',
-          title: 'works In Progress',
+          title: 'Works In Progress',
           to: '/wip/wip'
         },
         {

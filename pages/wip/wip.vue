@@ -17,10 +17,15 @@
         <v-flex xs12 sm12 md6 lg4 xl4>
           <v-hover v-slot:default="{ hover }">
             <v-card class="wip-preview-card" :elevation="hover ? 12 : 2" tile>
-              <v-card-title>Title will appear here</v-card-title>
-              <v-card-subtitle>More info here</v-card-subtitle>
-              <v-card-text>Teaser for entry here</v-card-text>
-              <v-card-actions>tags here</v-card-actions>
+              <v-card-title class="card-title title white--text"
+                >Title will appear here</v-card-title
+              >
+              <v-card-subtitle class="subtitle-2 white--text"
+                >More info here</v-card-subtitle
+              >
+
+              <v-card-text class="card-body">Teaser for entry here</v-card-text>
+              <v-card-actions class="tags">tags here</v-card-actions>
             </v-card>
           </v-hover>
         </v-flex>
@@ -53,6 +58,22 @@ export default {
 }
 
 .wip-preview-card {
+  background-color: transparent;
   margin: 4%;
+}
+
+.card-title {
+  background-color: transparent;
+}
+
+.card-body {
+  margin: 0;
+  padding-top: 8px;
+  background-color: #f7f9fb;
+}
+
+.tags {
+  background-color: #31708e;
+  color: #f7f9fb;
 }
 </style>
