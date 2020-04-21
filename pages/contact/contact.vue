@@ -92,6 +92,8 @@ export default {
         this.errors.push('Name requiredbundleRenderer.renderToString')
       } else if (!this.email) {
         this.errors.push('Email required.')
+      } else if (!this.checkValidEmail(this.email)) {
+        this.errors.push('Please provide a valid email.')
       } else if (!this.message) {
         this.errors.push('Message required.')
       } else {
