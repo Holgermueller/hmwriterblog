@@ -18,6 +18,7 @@
           :to="item.to"
           router
           exact
+          class="nav-links"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -38,17 +39,22 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+    <v-app-bar :clipped-left="clipped" fixed color="#31708e" app>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="#f7f9fb" />
       <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
+        <v-icon color="#f7f9fb"
+          >mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon
+        >
       </v-btn>
 
       <v-toolbar-title>
-        <strong to="/" class="title name">
-          Holger Mueller
-        </strong>
-        <small class="overline">
+        <nuxt-link to="/">
+          <strong class="title name">
+            Holger Mueller
+          </strong></nuxt-link
+        >
+
+        <small class="overline tagline">
           Writer | Traveller | Enthusiast
         </small>
       </v-toolbar-title>
@@ -95,6 +101,11 @@ export default {
           icon: 'mdi-laptop',
           title: 'Contact',
           to: '/contact/contact'
+        },
+        {
+          icon: 'mdi-scale-balance',
+          title: 'Terms of Service',
+          to: '/termsofservice/tos'
         }
       ],
       miniVariant: false,
@@ -121,11 +132,21 @@ export default {
   background-color: #8fc1e3;
 }
 
-app-bar {
-  background-color: #31708e;
-}
-
 .name {
   margin-right: 0.5em;
+  color: #f7f9fb;
+}
+
+a {
+  text-decoration: none;
+  color: #f7f9fb;
+}
+
+.nav-links {
+  color: #f7f9fb;
+}
+
+.tagline {
+  color: #f7f9fb;
 }
 </style>

@@ -5,15 +5,26 @@
       <v-card-text>
         <v-form ref="form">
           <v-flex xs12 sm12 md12 lg12 xl12>
-            <v-text-field v-model="name" label="Name" outlined></v-text-field>
+            <v-text-field
+              class="input-field"
+              v-model="name"
+              label="Name"
+              outlined
+            ></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm12 md12 lg12 xl12>
-            <v-text-field v-model="email" label="Email" outlined></v-text-field>
+            <v-text-field
+              class="input-field"
+              v-model="email"
+              label="Email"
+              outlined
+            ></v-text-field>
           </v-flex>
 
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-textarea
+              class="input-field"
               v-model="message"
               label="Message"
               counter="1000"
@@ -48,7 +59,8 @@
         <v-spacer></v-spacer>
         <v-btn
           @click.prevent="checkFormData"
-          color="primary"
+          color="#31708e"
+          class="text--white"
           x-large
           tile
           :disabled="name === '' || email === '' || message === ''"
@@ -113,6 +125,7 @@ export default {
   width: 55%;
   margin-left: auto;
   margin-right: auto;
+  background-color: #f7f9fb;
 }
 
 #contactErrors {
@@ -126,5 +139,9 @@ export default {
 
 .errors-list {
   list-style: none;
+}
+
+.input-field {
+  background-color: ghostwhite;
 }
 </style>
