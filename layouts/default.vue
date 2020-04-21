@@ -59,6 +59,8 @@
         </small>
       </v-toolbar-title>
       <v-spacer />
+
+      <Agreement />
     </v-app-bar>
 
     <v-content class="app-background">
@@ -70,7 +72,13 @@
 </template>
 
 <script>
+import Agreement from './agreement'
+
 export default {
+  components: {
+    Agreement
+  },
+
   data() {
     return {
       clipped: false,
