@@ -49,10 +49,26 @@
           class="alert"
         >
           <b>Please fix the following error(s):</b>
+          <br />
           <ul class="errors-list">
             <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
           </ul>
+          <br />
           <b>Clear form to continue.</b>
+        </v-alert>
+      </section>
+
+      <section id="successAlert">
+        <v-alert
+          v-model="success"
+          type="success"
+          border="top"
+          width="75%"
+          dark
+          dismissable
+          class="success"
+        >
+          <b class="succssMessage">Your message has been sent!</b>
         </v-alert>
       </section>
 
@@ -86,7 +102,8 @@ export default {
       email: '',
       message: '',
       errors: [],
-      alert: true
+      alert: true,
+      success: false
     }
   },
 
@@ -119,7 +136,12 @@ export default {
         message: this.message
       }
 
+      console.log(messageInfo)
+
       this.clearContactForm()
+      this.success = true
+
+      this.setTimer()
     },
 
     clearContactForm() {
@@ -129,6 +151,10 @@ export default {
       this.message = ''
       this.alert = false
       this.errors = []
+    },
+
+    setTimer() {
+      setTimeout(() => (this.success = false), 5000)
     }
   }
 }
@@ -142,17 +168,18 @@ export default {
   background-color: #f7f9fb;
 }
 
-#contactErrors {
-  margin: 2% 0;
-  text-align: center;
-}
-
-.alert {
+.alert,
+.success {
   margin: 0 auto;
 }
 
 .errors-list {
   list-style: none;
+  text-align: center;
+}
+
+.succssMessage {
+  text-align: center;
 }
 
 .input-field {
