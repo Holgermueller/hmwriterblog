@@ -16,7 +16,7 @@
 
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
-              type="text"
+              type="email"
               class="input-field"
               v-model="email"
               label="Email"
@@ -113,7 +113,12 @@ export default {
     },
 
     sendMessage() {
-      console.log('Message sent!')
+      const messageInfo = {
+        name: this.name,
+        email: this.email,
+        message: this.message
+      }
+
       this.clearContactForm()
     },
 
@@ -123,14 +128,7 @@ export default {
       this.email = ''
       this.message = ''
       this.alert = false
-    },
-
-    dismissFormErrors() {
       this.errors = []
-    },
-
-    resetSubmit() {
-      this.$refs.submit.reset()
     }
   }
 }

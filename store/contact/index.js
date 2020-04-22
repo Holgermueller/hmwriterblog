@@ -1,7 +1,13 @@
 export default {
-  state: {},
+  state: {
+    messageInfo: null
+  },
 
-  mutations: {},
+  mutations: {
+    setMessages(state, payload) {
+      state.messageInfo = payload
+    }
+  },
 
   actions: {},
 
