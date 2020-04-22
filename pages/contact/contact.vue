@@ -73,7 +73,7 @@
       </section>
 
       <v-card-actions>
-        <v-btn @click="clearContactForm" color="error" x-large tile
+        <v-btn @click.prevent="resetForm" color="error" x-large tile
           >Clear</v-btn
         >
         <v-spacer></v-spacer>
@@ -102,7 +102,7 @@ export default {
       email: '',
       message: '',
       errors: [],
-      alert: true,
+      alert: false,
       success: false
     }
   },
@@ -110,14 +110,19 @@ export default {
   methods: {
     checkFormData() {
       if (!this.name && !this.email && !this.message) {
+        this.alert = true
         this.errors.push('Please fill out all the fields.')
       } else if (!this.name) {
+        this.alert = true
         this.errors.push('Name requiredbundleRenderer.renderToString')
       } else if (!this.email) {
+        this.alert = true
         this.errors.push('Email required.')
       } else if (!this.checkValidEmail(this.email)) {
+        this.alert = true
         this.errors.push('Please provide a valid email.')
       } else if (!this.message) {
+        this.alert = true
         this.errors.push('Message required.')
       } else {
         this.sendMessage()
@@ -138,13 +143,13 @@ export default {
 
       console.log(messageInfo)
 
-      this.clearContactForm()
+      this.resetForm()
       this.success = true
 
       this.setTimer()
     },
 
-    clearContactForm() {
+    resetForm() {
       this.$refs.form.reset()
       this.name = ''
       this.email = ''
