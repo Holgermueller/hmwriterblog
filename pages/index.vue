@@ -1,20 +1,25 @@
 <template>
   <div id="home">
-    <!-- <v-card class="page-header" tile>
-      <v-card-title class="headline text-center">
-        Holger Mueller
-      </v-card-title>
-      <v-card-subtitle></v-card-subtitle>
-      <v-card-text> </v-card-text>
-    </v-card> -->
-
     <h1 class="page-header display-3 font-weight-bold">
-      Title will appear here
+      {{ title }}
     </h1>
 
     <v-card class="recent-post" tile>
-      <v-card-subtitle>More info here</v-card-subtitle>
-      <v-card-text>Body of story will appear here. </v-card-text>
+      <v-card-subtitle>
+        <p>Location: {{ location }}</p>
+        <p>Date: {{ dateTime | changeDateFilter }}</p>
+        <p>Listening to: {{ listeningTo }}</p>
+      </v-card-subtitle>
+
+      <v-divider></v-divider>
+
+      <v-card-text
+        >{{ blogbody }}
+
+        <div>
+          {{ tags }}
+        </div>
+      </v-card-text>
 
       <v-card-actions class="footer">
         <h3>
@@ -43,8 +48,38 @@
 </template>
 
 <script>
+const moment = require('moment')
+import { createClient } from '~/plugins/contentful/contentful'
+const contentfulClient = createClient()
+
 export default {
-  components: {}
+  components: {},
+
+  asyncData({ data }) {
+    return Promise.all([
+      contentfulClient.getEntries({
+        content_type: 'blogPost',
+        order: '-sys.createdAt'
+      })
+    ])
+      .then(([pages]) => {
+        return {
+          title: pages.items[0].fields.title,
+          blogbody: pages.items[0].fields.blogbody,
+          dateTime: pages.items[0].fields.dateTime,
+          tags: pages.items[0].fields.tags,
+          location: pages.items[0].fields.location,
+          listeningTo: pages.items[0].fields.listeningTo
+        }
+      })
+      .catch(console.error)
+  },
+
+  filters: {
+    changeDateFilter: value => {
+      return moment(value).format('dddd, Do MMMM YYYY, LT')
+    }
+  }
 }
 </script>
 

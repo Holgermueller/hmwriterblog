@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+const contentfulConfig = require('./.contentful.json')
 
 export default {
   mode: 'universal',
@@ -54,6 +55,11 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios'
   ],
+  env: {
+    CTF_SPACE_ID: contentfulConfig.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: contentfulConfig.CTF_CDA_ACCESS_TOKEN,
+    CTF_ENVIRONMENT: contentfulConfig.CTF_ENVIRONMENT
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
