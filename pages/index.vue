@@ -63,8 +63,10 @@ export default {
 
   components: {},
 
-  computed:{
-    return this.$store.state.blogPosts
+  computed: {
+    blogPosts() {
+      return this.$store.state.blogPosts
+    }
   },
 
   filters: {
