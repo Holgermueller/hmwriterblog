@@ -53,6 +53,14 @@ import { createClient } from '~/plugins/contentful/contentful'
 const contentfulClient = createClient()
 
 export default {
+  head() {
+    return {
+      script: [
+        { src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' }
+      ]
+    }
+  },
+
   components: {},
 
   asyncData({ data }) {
@@ -106,7 +114,7 @@ export default {
 }
 
 a {
-  color: ghostwhite;
+  color: ghostwhite !important;
 }
 
 .copy {
