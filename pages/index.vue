@@ -63,24 +63,8 @@ export default {
 
   components: {},
 
-  asyncData({ data }) {
-    return Promise.all([
-      contentfulClient.getEntries({
-        content_type: 'blogPost',
-        order: '-sys.createdAt'
-      })
-    ])
-      .then(([pages]) => {
-        return {
-          title: pages.items[0].fields.title,
-          blogbody: pages.items[0].fields.blogbody,
-          dateTime: pages.items[0].fields.dateTime,
-          tags: pages.items[0].fields.tags,
-          location: pages.items[0].fields.location,
-          listeningTo: pages.items[0].fields.listeningTo
-        }
-      })
-      .catch(console.error)
+  computed:{
+    return this.$store.state.blogPosts
   },
 
   filters: {
