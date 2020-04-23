@@ -13,9 +13,18 @@ backend:
       create: true
       slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
       editor:
-        preview: false
+        preview: true
       fields:
         - { label: 'Title', name: 'title', widget: 'string', required: true }
-        - { label: 'Publish Date', name: 'date', widget: 'date' }
-        - {}
-        - {}
+        - {
+            label: 'When',
+            name: 'date',
+            widget: 'datetime',
+            dateFormat: 'dddd. Do. MMMM. YYYY',
+            timeFormat: 'h:mm',
+            format: 'LT',
+          }
+        - { label: 'Body', name: 'blogBody', widget: 'markdown' }
+        - { label: 'Location', name: 'location', widget: 'string' }
+        - { label: 'Listening To', name: 'listeningTo', widget: 'string' }
+        - { tags: 'Tags', name: 'tags', widget: 'list' }
