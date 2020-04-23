@@ -106,7 +106,7 @@ export default {
 }
 
 a {
-  color: #f7f9fb;
+  color: ghostwhite;
 }
 
 .copy {
