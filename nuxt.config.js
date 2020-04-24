@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+require('dotenv').config()
 const contentfulConfig = require('./.contentful.json')
 
 export default {

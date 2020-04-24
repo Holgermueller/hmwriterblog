@@ -1,14 +1,9 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+// import Vuex from 'vuex'
 
-import contact from './contact'
-import blogPosts from './blogPosts'
+// //import contact from './contact'
+// import blogPosts from './blogPosts'
+// import shared from './shared'
 
-Vue.use(Vuex)
-
-export const store = new Vuex.Store({
-  modules: {
-    contact: contact,
-    blogPosts: blogPosts
-  }
-})
+// export const store = new Vuex.Store({
+//   modules: {}
+// })

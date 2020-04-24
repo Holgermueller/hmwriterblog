@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <!-- <div v-for="(post, index) in blogPosts" :key="index"></div> -->
     <h1 class="page-header display-3 font-weight-bold">
       {{ title }}
     </h1>
@@ -15,6 +16,10 @@
 
       <v-card-text
         >{{ blogbody }}
+
+        <RichTextRenderer :testBody="testBody" />
+
+        {{ testBody }}
 
         <div>
           {{ tags }}
@@ -51,23 +56,36 @@
 const moment = require('moment')
 import { createClient } from '~/plugins/contentful/contentful'
 const contentfulClient = createClient()
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+import RichTextRenderer from 'contentful-rich-text-vue-renderer'
 
 export default {
-  head() {
-    return {
-      script: [
-        { src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' }
-      ]
-    }
+  components: {
+    RichTextRenderer
   },
 
-  components: {},
-
-  computed: {
-    blogPosts() {
-      return this.$store.state.blogPosts
-    }
+  asyncData({ data }) {
+    return Promise.all([
+      contentfulClient.getEntries({
+        content_type: 'blogPost',
+        order: '-sys.createdAt'
+      })
+    ])
+      .then(([pages]) => {
+        return {
+          title: pages.items[0].fields.title,
+          blogbody: pages.items[0].fields.blogbody,
+          dateTime: pages.items[0].fields.dateTime,
+          tags: pages.items[0].fields.tags,
+          location: pages.items[0].fields.location,
+          listeningTo: pages.items[0].fields.listeningTo,
+          testBody: pages.items[0].fields.rtfBlog
+        }
+      })
+      .catch(console.error)
   },
+
+  computed: {},
 
   filters: {
     changeDateFilter: value => {
@@ -78,14 +96,6 @@ export default {
 </script>
 
 <style scoped>
-/* .page-header {
-  width: 55%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2%;
-  background-color: #f7f9fb;
-} */
-
 .recent-post {
   width: 55%;
   margin: 3% auto 0;
