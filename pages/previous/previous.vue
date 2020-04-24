@@ -13,33 +13,59 @@
     </section>
 
     <v-container class="previous-entries-container" fluid>
-      <v-layout row wrap>
-        <v-flex xs12 sm12 md6 lg4 xl4>
-          <v-hover v-slot:default="{ hover }">
-            <v-card class="preview-card" :elevation="hover ? 12 : 2" tile>
-              <v-card-title class="card-title title white--text"
-                >Title will appear here</v-card-title
-              >
-              <v-card-subtitle class="subtitle-2 white--text"
-                >More info here</v-card-subtitle
-              >
+      <!-- <v-layout row wrap>
+        <v-flex xs12 sm12 md6 lg4 xl4> -->
+      <v-row align="center" justify="center">
+        <PreviewCard
+          v-for="post in posts"
+          :key="post.id"
+          :title="post.title"
+          :id="post.id"
+          :previewText="post.previewText"
+          :previewDate="post.previewDate"
+          :tags="post.tags"
+        />
+      </v-row>
 
-              <v-card-text class="card-body">Teaser for entry here</v-card-text>
-              <v-card-actions class="tags">tags here</v-card-actions>
-            </v-card>
-          </v-hover>
-        </v-flex>
-      </v-layout>
+      <!-- </v-flex>
+      </v-layout> -->
     </v-container>
   </div>
 </template>
 
 <script>
+import { createClient } from '~/plugins/contentful/contentful'
+const contentfulClient = createClient()
+import PreviewCard from './previewCard'
+
 export default {
   name: 'PreviousPosts',
 
-  data() {
-    return {}
+  components: {
+    PreviewCard
+  },
+
+  asyncData({ data }) {
+    return Promise.all([
+      contentfulClient.getEntries({
+        content_type: 'blogPost',
+        order: '-sys.createdAt'
+      })
+    ])
+      .then(([pages]) => {
+        return {
+          posts: pages.items.map(post => {
+            return {
+              id: post.sys.id,
+              title: post.fields.title,
+              previewText: post.fields.subtitle,
+              previewDate: post.fields.dateTime,
+              tags: post.fields.tags
+            }
+          })
+        }
+      })
+      .catch(console.error)
   }
 }
 </script>
@@ -54,27 +80,8 @@ export default {
 }
 
 .previous-entries-container {
-  margin-top: 0;
-  width: 75%;
-}
-
-.preview-card {
-  background-color: transparent;
-  margin: 4%;
-}
-
-.card-title {
-  background-color: transparent;
-}
-
-.card-body {
-  margin: 0;
-  padding-top: 8px;
-  background-color: #f7f9fb;
-}
-
-.tags {
-  background-color: #31708e;
-  color: #f7f9fb;
+  margin: 0 auto;
+  width: 85%;
+  align-content: center;
 }
 </style>
