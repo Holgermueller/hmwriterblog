@@ -14,12 +14,8 @@
 
       <v-divider></v-divider>
 
-      <v-card-text
-        >{{ blogbody }}
-
-        <RichTextRenderer :testBody="testBody" />
-
-        {{ testBody }}
+      <v-card-text>
+        <div v-html="blogbody"></div>
 
         <div>
           {{ tags }}
@@ -57,12 +53,9 @@ const moment = require('moment')
 import { createClient } from '~/plugins/contentful/contentful'
 const contentfulClient = createClient()
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
-import RichTextRenderer from 'contentful-rich-text-vue-renderer'
 
 export default {
-  components: {
-    RichTextRenderer
-  },
+  components: {},
 
   asyncData({ data }) {
     return Promise.all([
@@ -74,12 +67,11 @@ export default {
       .then(([pages]) => {
         return {
           title: pages.items[0].fields.title,
-          blogbody: pages.items[0].fields.blogbody,
           dateTime: pages.items[0].fields.dateTime,
           tags: pages.items[0].fields.tags,
           location: pages.items[0].fields.location,
           listeningTo: pages.items[0].fields.listeningTo,
-          testBody: pages.items[0].fields.rtfBlog
+          blogbody: documentToHtmlString(pages.items[0].fields.rtfBlog)
         }
       })
       .catch(console.error)
