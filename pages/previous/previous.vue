@@ -81,7 +81,6 @@ export default {
 
 .previous-entries-container {
   margin: 0 auto;
-  width: 85%;
   align-content: center;
 }
 </style>

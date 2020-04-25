@@ -1,6 +1,6 @@
 <template>
   <div id="agreement">
-    <v-dialog v-model="dialog">
+    <v-dialog v-model="dialog" width="500" persistent>
       <template v-slot:activator="{ on }">
         <v-btn icon small color="#f7f9fb" v-on="on">
           <v-icon>mdi-file-document-outline</v-icon>
@@ -71,8 +71,6 @@ export default {
 <style scoped>
 .agreement-dialog {
   background-color: #f7f9fb;
-  width: 75%;
-  margin: auto;
 }
 
 .card-header,

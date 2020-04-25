@@ -3,14 +3,17 @@
     <v-col xs12 sm12 md12 lg4 xl4>
       <v-hover v-slot:default="{ hover }">
         <v-card class="preview-card" :elevation="hover ? 12 : 2" tile>
-          <v-card-title class="card-title title white--text">{{
-            title
-          }}</v-card-title>
+          <v-card-title
+            class=" card-title title font-weight-bold white--text "
+            >{{ title }}</v-card-title
+          >
           <v-card-subtitle class="subtitle-2 white--text">{{
             previewDate | changeDateFilter
           }}</v-card-subtitle>
 
-          <v-card-text class="card-body">{{ previewText }}</v-card-text>
+          <v-card-text class="card-body font-regular">{{
+            previewText
+          }}</v-card-text>
           <v-card-actions class="tags">{{ tags }}</v-card-actions>
         </v-card>
       </v-hover>
@@ -65,11 +68,17 @@ export default {
   background-color: transparent;
 }
 
+.card-title-hover {
+  background-color: #f7f9fb;
+  color: #31708e;
+}
+
 .card-body {
   margin: 0;
   padding-top: 8px;
   background-color: #f7f9fb;
   height: 150px;
+  color: #31708e;
 }
 
 .tags {
