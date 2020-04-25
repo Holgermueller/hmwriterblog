@@ -1,6 +1,5 @@
 <template>
   <div id="home">
-    <!-- <div v-for="(post, index) in blogPosts" :key="index"></div> -->
     <h1 class="page-header display-3 font-weight-bold">
       {{ title }}
     </h1>

@@ -3,13 +3,15 @@
     <v-col xs12 sm12 md12 lg4 xl4>
       <v-hover v-slot:default="{ hover }">
         <v-card class="preview-card" :elevation="hover ? 12 : 2" tile>
-          <v-card-title
-            class=" card-title title font-weight-bold white--text "
-            >{{ title }}</v-card-title
-          >
-          <v-card-subtitle class="subtitle-2 white--text">{{
-            previewDate | changeDateFilter
-          }}</v-card-subtitle>
+          <nuxt-link class="link-to-article" :to="'/previous/' + id">
+            <v-card-title
+              class=" card-title title font-weight-bold white--text "
+              >{{ title }}</v-card-title
+            >
+            <v-card-subtitle class="subtitle-2 white--text">{{
+              previewDate | changeDateFilter
+            }}</v-card-subtitle>
+          </nuxt-link>
 
           <v-card-text class="card-body font-regular">{{
             previewText
@@ -71,6 +73,10 @@ export default {
 .card-title-hover {
   background-color: #f7f9fb;
   color: #31708e;
+}
+
+a {
+  text-decoration: none;
 }
 
 .card-body {
