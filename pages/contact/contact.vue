@@ -7,9 +7,16 @@
           name="contact"
           ref="form"
           method="POST"
-          data-netlify-recapta="true"
+          data-netlify-recaptcha="true"
           data-netlify="true"
         >
+          <v-flex class="hidden" xs12 sm12 md12 lg12 xl12>
+            <v-text-field
+              label="Don't fill this out if you're human:"
+              name="bot-field"
+            />
+          </v-flex>
+
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
               type="text"
@@ -18,7 +25,7 @@
               label="Name"
               name="name"
               outlined
-            ></v-text-field>
+            />
           </v-flex>
 
           <v-flex xs12 sm12 md12 lg12 xl12>
@@ -29,7 +36,7 @@
               label="Email"
               name="email"
               outlined
-            ></v-text-field>
+            />
           </v-flex>
 
           <v-flex xs12 sm12 md12 lg12 xl12>
@@ -41,11 +48,11 @@
               name="message"
               counter="1000"
               outlined
-            ></v-textarea>
+            />
           </v-flex>
 
           <v-flex xs12 sm12 md12 lg12 xl12>
-            <div data-netlify-recapta="true"></div>
+            <div data-netlify-recaptcha="true"></div>
           </v-flex>
         </v-form>
       </v-card-text>
