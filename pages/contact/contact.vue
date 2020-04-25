@@ -3,13 +3,20 @@
     <v-card class="page-content" tile>
       <v-card-title>Contact Us</v-card-title>
       <v-card-text>
-        <v-form ref="form" method="POST" data-netlify="true">
+        <v-form
+          name="contact"
+          ref="form"
+          method="POST"
+          data-netlify-recapta="true"
+          data-netlify="true"
+        >
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
               type="text"
               class="input-field"
               v-model="name"
               label="Name"
+              name="name"
               outlined
             ></v-text-field>
           </v-flex>
@@ -20,6 +27,7 @@
               class="input-field"
               v-model="email"
               label="Email"
+              name="email"
               outlined
             ></v-text-field>
           </v-flex>
@@ -30,9 +38,14 @@
               class="input-field"
               v-model="message"
               label="Message"
+              name="message"
               counter="1000"
               outlined
             ></v-textarea>
+          </v-flex>
+
+          <v-flex xs12 sm12 md12 lg12 xl12>
+            <div data-netlify-recapta="true"></div>
           </v-flex>
         </v-form>
       </v-card-text>
@@ -78,6 +91,8 @@
         >
         <v-spacer></v-spacer>
         <v-btn
+          type="submit"
+          name="submit"
           @click.prevent="checkFormData"
           ref="submit"
           color="#31708e"
