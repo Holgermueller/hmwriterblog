@@ -3,7 +3,7 @@
     <v-card class="page-content" tile>
       <v-card-title>Contact Us</v-card-title>
       <v-card-text>
-        <v-form ref="form">
+        <v-form ref="form" method="POST" data-netlify="true">
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
               type="text"

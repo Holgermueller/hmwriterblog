@@ -1,16 +1,16 @@
 <template>
   <div id="aboutPage">
     <h1 class="page-header display-3 font-weight-bold">
-      About
+      {{ header }}
     </h1>
 
     <v-card class="about-page" tile>
-      <!-- <v-card-title class="page-title">About</v-card-title> -->
-
-      <v-card-subtitle>some info here</v-card-subtitle>
+      <v-card-subtitle class="font-weight-bold">
+        <h3>Or: {{ subTitle }}</h3>
+      </v-card-subtitle>
 
       <v-card-text>
-        bio will appear here.
+        <div v-html="aboutBody"></div>
       </v-card-text>
 
       <v-card-actions class="footer">
@@ -19,6 +19,10 @@
             <span class="mdi mdi-twitter"></span
           ></a>
         </h3>
+
+        <v-spacer></v-spacer>
+
+        <h6 class="copy">&copy; 2020 Holger Mueller</h6>
 
         <v-spacer></v-spacer>
 
@@ -33,8 +37,29 @@
 </template>
 
 <script>
+import { createClient } from '~/plugins/contentful/contentful'
+const contentfulClient = createClient()
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+
 export default {
-  name: 'About'
+  name: 'About',
+
+  asyncData({ data }) {
+    return Promise.all([
+      contentfulClient.getEntries({
+        content_type: 'about',
+        order: '-sys.id'
+      })
+    ])
+      .then(([page]) => {
+        return {
+          header: page.items[0].fields.aboutHeader,
+          aboutBody: documentToHtmlString(page.items[0].fields.aboutBodyRtf),
+          subTitle: page.items[0].fields.subTitle
+        }
+      })
+      .catch(console.error)
+  }
 }
 </script>
 
@@ -52,7 +77,8 @@ export default {
   background-color: #f7f9fb;
 }
 
-a {
+a,
+.copy {
   color: #f7f9fb;
 }
 
