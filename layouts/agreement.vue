@@ -1,6 +1,6 @@
 <template>
   <div id="agreement">
-    <v-dialog v-model="dialog" fullscreen>
+    <v-dialog v-model="dialog">
       <template v-slot:activator="{ on }">
         <v-btn icon small color="#f7f9fb" v-on="on">
           <v-icon>mdi-file-document-outline</v-icon>
@@ -17,17 +17,26 @@
         </v-card-subtitle>
 
         <v-card-text>
-          <h3 class="warning-notice">Before you proceed:</h3>
+          <div class="warning-container">
+            <h3 class="warning-notice">Before you proceed:</h3>
 
-          <div class="the-warning">
-            <p>
-              Please be aware that by clicking agree you conscent to exposing
-              yourself to material you may find offensive or distasteful.
-            </p>
+            <div class="the-warning">
+              <p>
+                Please be aware that by clicking agree you conscent to exposing
+                yourself to material you may find offensive or distasteful.
+              </p>
 
-            <p>If you are easliy offened, please visit another website.</p>
+              <p>If you are easliy offened, please visit another website.</p>
 
-            <p>Thank you.</p>
+              <p>Thank you.</p>
+            </div>
+          </div>
+
+          <div class="checkbox">
+            <v-checkbox
+              v-model="checkBox"
+              label="I understand and agree to these terms."
+            ></v-checkbox>
           </div>
         </v-card-text>
         <v-card-actions>
@@ -37,6 +46,7 @@
             @click="dialog = false"
             block
             tile
+            :disabled="checkBox === false"
             >Agree!</v-btn
           >
         </v-card-actions>
@@ -51,7 +61,8 @@ export default {
 
   data() {
     return {
-      dialog: true
+      dialog: true,
+      checkBox: false
     }
   }
 }
@@ -60,6 +71,8 @@ export default {
 <style scoped>
 .agreement-dialog {
   background-color: #f7f9fb;
+  width: 75%;
+  margin: auto;
 }
 
 .card-header,
@@ -68,11 +81,21 @@ export default {
   color: #f7f9fb;
 }
 
+.warning-container {
+  width: 75%;
+  margin: 8% auto;
+}
+
 .warning-notice {
-  margin: 8px 0;
+  margin: 4% 0;
 }
 
 .the-warning {
   margin: 4px;
+}
+
+.checkbox {
+  width: 75%;
+  margin: auto;
 }
 </style>
