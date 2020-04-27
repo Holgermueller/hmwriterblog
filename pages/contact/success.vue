@@ -8,7 +8,7 @@
       <v-card-text>We'll get back to you as soon as possible! </v-card-text>
 
       <v-card-actions>
-        <v-btn <nuxt-link to="../../contact"></nuxt-link> block>Back</v-btn>
+        <nuxt-link to="/contact"><v-btn block>Back</v-btn> </nuxt-link>
       </v-card-actions>
     </v-card>
   </div>
