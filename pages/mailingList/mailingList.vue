@@ -14,10 +14,22 @@
           ref="form"
           name="mailingList"
           method="POST"
+          action="/mailingList/mailingList"
           netlify
           netlify-honeypot="bot-field"
         >
           <input type="hidden" name="bot-field" value="contact" />
+
+          <v-flex xs12 sm12 md12 lg12 xl12>
+            <v-text-field
+              type="text"
+              class="input-field"
+              label="Name"
+              name="name"
+              outlined
+            />
+          </v-flex>
+
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
               type="email"
