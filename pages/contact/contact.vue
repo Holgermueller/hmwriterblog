@@ -3,8 +3,14 @@
     <v-card class="page-content" tile>
       <v-card-title>Contact Us</v-card-title>
       <v-card-text>
-        <v-form name="contact" ref="form" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="contact" />
+        <v-form
+          ref="form"
+          name="contact"
+          method="POST"
+          netlify-honeypot="bot-field"
+          netlify
+        >
+          <input type="hidden" name="bot-field" value="contact" />
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
               type="text"
@@ -91,7 +97,7 @@
               id="submit"
               type="submit"
               name="submit"
-              @click.prevent="checkFormData"
+              value="Submit"
               ref="submit"
               color="#31708e"
               class="text--white"
