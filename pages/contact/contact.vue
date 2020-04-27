@@ -11,11 +11,7 @@
           data-netlify="true"
           data-netlify-honeypot="bot-field"
         >
-          <input
-            type="hidden"
-            name="form-name"
-            value="contact"
-          ></input>
+          <input type="hidden" name="form-name" value="contact" />
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
               type="text"
@@ -53,62 +49,67 @@
           <v-flex xs12 sm12 md12 lg12 xl12>
             <div data-netlify-recaptcha="true"></div>
           </v-flex>
+
+          <v-flex xs12 sm12 md12 lg12 xl12>
+            <section id="contactErrors">
+              <v-alert
+                v-model="alert"
+                type="error"
+                border="top"
+                width="75%"
+                v-if="errors.length"
+                dark
+                dismissible
+                class="alert"
+              >
+                <b>Please fix the following error(s):</b>
+                <br />
+                <ul class="errors-list">
+                  <li v-for="(error, index) in errors" :key="index">
+                    {{ error }}
+                  </li>
+                </ul>
+                <br />
+                <b>Clear form to continue.</b>
+              </v-alert>
+            </section>
+
+            <section id="successAlert">
+              <v-alert
+                v-model="success"
+                type="success"
+                border="top"
+                width="75%"
+                dark
+                dismissable
+                class="success"
+              >
+                <b class="succssMessage">Your message has been sent!</b>
+              </v-alert>
+            </section>
+          </v-flex>
+
+          <v-flex xs12 sm12 md12 lg12 xl12>
+            <v-btn @click.prevent="resetForm" color="error" x-large tile
+              >Clear</v-btn
+            >
+
+            <v-btn
+              id="submit"
+              type="submit"
+              name="submit"
+              @click.prevent="checkFormData"
+              ref="submit"
+              color="#31708e"
+              class="text--white"
+              x-large
+              tile
+              :disabled="name === '' || email === '' || message === ''"
+              >Submit</v-btn
+            >
+          </v-flex>
         </v-form>
       </v-card-text>
-
-      <section id="contactErrors">
-        <v-alert
-          v-model="alert"
-          type="error"
-          border="top"
-          width="75%"
-          v-if="errors.length"
-          dark
-          dismissible
-          class="alert"
-        >
-          <b>Please fix the following error(s):</b>
-          <br />
-          <ul class="errors-list">
-            <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
-          </ul>
-          <br />
-          <b>Clear form to continue.</b>
-        </v-alert>
-      </section>
-
-      <section id="successAlert">
-        <v-alert
-          v-model="success"
-          type="success"
-          border="top"
-          width="75%"
-          dark
-          dismissable
-          class="success"
-        >
-          <b class="succssMessage">Your message has been sent!</b>
-        </v-alert>
-      </section>
-
-      <v-card-actions>
-        <v-btn @click.prevent="resetForm" color="error" x-large tile
-          >Clear</v-btn
-        >
-        <v-spacer></v-spacer>
-        <v-btn
-          type="submit"
-          name="submit"
-          @click.prevent="checkFormData"
-          ref="submit"
-          color="#31708e"
-          class="text--white"
-          x-large
-          tile
-          :disabled="name === '' || email === '' || message === ''"
-          >Submit</v-btn
-        >
-      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -196,7 +197,7 @@ export default {
 
 .alert,
 .success {
-  margin: 0 auto;
+  margin: 8px auto;
 }
 
 .errors-list {
@@ -210,5 +211,9 @@ export default {
 
 .input-field {
   background-color: ghostwhite;
+}
+
+#submit {
+  float: right;
 }
 </style>
