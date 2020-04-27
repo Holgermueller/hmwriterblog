@@ -3,14 +3,7 @@
     <v-card class="page-content" tile>
       <v-card-title>Contact Us</v-card-title>
       <v-card-text>
-        <v-form
-          name="contact"
-          ref="form"
-          method="post"
-          data-netlify-recaptcha="true"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-        >
+        <v-form name="contact" ref="form" method="POST" data-netlify="true">
           <input type="hidden" name="form-name" value="contact" />
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
