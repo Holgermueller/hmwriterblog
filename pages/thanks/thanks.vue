@@ -9,7 +9,7 @@
 
       <v-card-actions>
         <nuxt-link to="/contact/contact"
-          ><v-btn class="button white--text" color="#31708e" x-large block
+          ><v-btn class="button white--text" color="#31708e" x-large tile block
             >Back</v-btn
           >
         </nuxt-link>

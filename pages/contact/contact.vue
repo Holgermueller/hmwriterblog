@@ -7,7 +7,7 @@
           ref="form"
           name="contact"
           method="POST"
-          action="/thanks/thanks"
+          action="/contact/contact"
           netlify-honeypot="bot-field"
           netlify
         >

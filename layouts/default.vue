@@ -106,6 +106,11 @@ export default {
           to: '/about/about'
         },
         {
+          icon: 'mdi-email-newsletter',
+          title: 'Join the Mailing List',
+          to: '/mailingList/mailingList'
+        },
+        {
           icon: 'mdi-laptop',
           title: 'Contact',
           to: '/contact/contact'
