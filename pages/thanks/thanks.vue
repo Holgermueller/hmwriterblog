@@ -8,7 +8,11 @@
       <v-card-text>We'll get back to you as soon as possible! </v-card-text>
 
       <v-card-actions>
-        <nuxt-link to="/contact"><v-btn block>Back</v-btn> </nuxt-link>
+        <nuxt-link to="/contact/contact"
+          ><v-btn class="button white--text" color="#31708e" x-large block
+            >Back</v-btn
+          >
+        </nuxt-link>
       </v-card-actions>
     </v-card>
   </div>
@@ -19,3 +23,10 @@ export default {
   name: 'Thanks'
 }
 </script>
+
+<style scoped>
+a {
+  text-decoration: none;
+  width: 100%;
+}
+</style>
