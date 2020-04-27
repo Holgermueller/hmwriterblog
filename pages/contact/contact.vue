@@ -6,17 +6,16 @@
         <v-form
           name="contact"
           ref="form"
-          method="POST"
+          method="post"
           data-netlify-recaptcha="true"
           data-netlify="true"
+          data-netlify-honeypot="bot-field"
         >
-          <v-flex class="hidden" xs12 sm12 md12 lg12 xl12>
-            <v-text-field
-              label="Don't fill this out if you're human:"
-              name="bot-field"
-            />
-          </v-flex>
-
+          <input
+            type="hidden"
+            name="form-name"
+            value="contact"
+          ></input>
           <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
               type="text"
