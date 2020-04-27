@@ -83,7 +83,7 @@
           </v-flex>
 
           <v-flex xs12 sm12 md12 lg12 xl12>
-            <v-btn @click.prevent="resetForm" color="error" x-large tile
+            <v-btn @click.prevent="resetForm" color="error" x-large tile block
               >Clear</v-btn
             >
 
@@ -97,6 +97,7 @@
               class="text--white"
               x-large
               tile
+              block
               :disabled="name === '' || email === '' || message === ''"
               >Submit</v-btn
             >
@@ -207,6 +208,6 @@ export default {
 }
 
 #submit {
-  float: right;
+  margin-top: 8px;
 }
 </style>
