@@ -2,7 +2,6 @@
   <div id="tos">
     <section>
       <h1 class="page-header">Terms of Service</h1>
-      <hr class="page-header" />
     </section>
 
     <v-card class="page-content" tile>

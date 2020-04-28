@@ -102,7 +102,7 @@ export default {
 
 <style scoped>
 .page-content {
-  width: 55%;
+  width: 85%;
   margin-left: auto;
   margin-right: auto;
   background-color: #f7f9fb;

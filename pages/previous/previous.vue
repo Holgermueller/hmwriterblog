@@ -80,7 +80,7 @@ export default {
 }
 
 .previous-entries-container {
-  margin: 0 auto;
+  margin: 0 auto 25%;
   align-content: center;
 }
 </style>

@@ -66,13 +66,12 @@ export default {
   width: 100%;
 }
 
-.card-title {
-  background-color: transparent;
+.preview-card:hover {
+  background-color: #31708e;
 }
 
-.card-title-hover {
-  background-color: #f7f9fb;
-  color: #31708e;
+.card-title {
+  background-color: transparent;
 }
 
 a {

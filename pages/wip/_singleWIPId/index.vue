@@ -1,18 +1,35 @@
 <template>
   <div class="single-wip">
-    <v-card>
-      <v-card-title>Title will appear here</v-card-title>
+    <section class="page-header-section">
+      <h1 class="page-header display-3 font-weight-bold white--text">
+        {{ title }}
+      </h1>
 
-      <v-card-subtitle>More data here</v-card-subtitle>
+      <hr class="page-header font-weight-bold" />
 
-      <v-card-text>
-        Body of story will appear here.
+      <h3 class="page-header title font-weight-bold">
+        {{ dateAndTime | changeDateFilter }}
+      </h3>
+    </section>
+
+    <v-card class="post-content" tile>
+      <v-card-text class="card-body">
+        <div class="content" v-html="blogPost"></div>
       </v-card-text>
 
       <v-card-actions class="footer">
+        <nuxt-link to="/previous/previous">
+          <v-btn class="white--text" text>
+            <span class="mdi mdi-arrow-left-bold"></span>
+            BACK</v-btn
+          >
+        </nuxt-link>
+
+        <v-spacer></v-spacer>
+
         <h6 class="copy">
-          <span>&copy; Year when story was written. </span>
-          Holger Mueller
+          <span>&copy; {{ dateAndTime | getOnlyYearFilter }} </span>
+          {{ author }}
         </h6>
       </v-card-actions>
     </v-card>
@@ -20,20 +37,63 @@
 </template>
 
 <script>
+const moment = require('moment')
+import { createClient } from '~/plugins/contentful/contentful'
+const contentfulClient = createClient()
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
+
 export default {
   Name: 'SingleWIPPost',
 
-  data() {
-    return {}
+  asyncData({ data, params }) {
+    return Promise.all([contentfulClient.getEntry(params.singleWIPId)]).then(
+      ([page]) => {
+        return {
+          title: page.fields.title,
+          author: page.fields.author,
+          dateAndTime: page.fields.dateAndTime,
+          blogPost: documentToHtmlString(page.fields.wipBody)
+        }
+      }
+    )
+  },
+
+  filters: {
+    changeDateFilter: value => {
+      return moment(value).format('dddd, Do MMM YYYY, LT')
+    },
+
+    getOnlyYearFilter: value => {
+      return moment(value).format('YYYY')
+    }
   }
 }
 </script>
 
 <style scoped>
+.page-header {
+  color: #f7f9fb;
+  width: 55%;
+  margin: 3% auto;
+  text-align: center;
+  padding: 0;
+}
+
+.post-content {
+  background-color: transparent;
+  width: 75%;
+  margin: auto;
+}
+
+.card-body {
+  background-color: #f7f9fb;
+}
+
 .copy {
   text-align: center;
   padding: 0;
   margin-top: 0.5em;
+  margin-right: 0.5em;
   color: #f7f9fb;
 }
 

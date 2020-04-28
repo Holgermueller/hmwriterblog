@@ -138,7 +138,8 @@ export default {
 
 <style scoped>
 .app-background {
-  background-image: url('~assets/backgroundimagestone.png');
+  background-image: url('~assets/backgroundimage.png');
+  background-attachment: fixed;
 }
 
 .nav-drawer {

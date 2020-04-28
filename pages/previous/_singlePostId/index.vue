@@ -41,6 +41,7 @@
             BACK</v-btn
           >
         </nuxt-link>
+
         <v-spacer></v-spacer>
 
         <h6 class="copy">
@@ -108,12 +109,6 @@ export default {
   background-color: transparent;
   width: 75%;
   margin: auto;
-}
-
-.post-headline {
-  background-color: transparent;
-  margin: 3% auto;
-  text-align: center;
 }
 
 .card-body {

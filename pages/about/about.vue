@@ -66,13 +66,13 @@ export default {
 <style scoped>
 .page-header {
   color: #f7f9fb;
-  width: 55%;
+  width: 85%;
   margin: 3% auto 0;
   text-align: center;
 }
 
 .about-page {
-  width: 55%;
+  width: 85%;
   margin: 2% auto;
   background-color: #f7f9fb;
 }

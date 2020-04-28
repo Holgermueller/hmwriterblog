@@ -8,38 +8,57 @@
       <hr class="page-header font-weight-bold" />
 
       <h3 class="page-header title font-weight-bold">
-        Some things I'm working on, but still proud of
+        Some unfinished work that I'm still proud of
       </h3>
     </section>
 
     <v-container class="wip-entries-container" fluid>
-      <v-layout row wrap>
-        <v-flex xs12 sm12 md6 lg4 xl4>
-          <v-hover v-slot:default="{ hover }">
-            <v-card class="wip-preview-card" :elevation="hover ? 12 : 2" tile>
-              <v-card-title class="card-title title white--text"
-                >Title will appear here</v-card-title
-              >
-              <v-card-subtitle class="subtitle-2 white--text"
-                >More info here</v-card-subtitle
-              >
-
-              <v-card-text class="card-body">Teaser for entry here</v-card-text>
-              <v-card-actions class="tags">tags here</v-card-actions>
-            </v-card>
-          </v-hover>
-        </v-flex>
-      </v-layout>
+      <v-row align="center" justify="center">
+        <wipCard
+          v-for="post in posts"
+          :key="post.id"
+          :title="post.title"
+          :id="post.id"
+          :description="post.description"
+          :dateAndTime="post.dateAndTime"
+        />
+      </v-row>
     </v-container>
   </div>
 </template>
 
 <script>
+import { createClient } from '~/plugins/contentful/contentful'
+const contentfulClient = createClient()
+import wipCard from './wipCard'
+
 export default {
   name: 'WIP',
 
-  data() {
-    return {}
+  components: {
+    wipCard
+  },
+
+  asyncData({ data }) {
+    return Promise.all([
+      contentfulClient.getEntries({
+        content_type: 'workInProgress',
+        order: '-sys.createdAt'
+      })
+    ])
+      .then(([pages]) => {
+        return {
+          posts: pages.items.map(post => {
+            return {
+              id: post.sys.id,
+              title: post.fields.title,
+              description: post.fields.description,
+              dateAndTime: post.fields.dateAndTime
+            }
+          })
+        }
+      })
+      .catch(console.error)
   }
 }
 </script>
@@ -47,13 +66,13 @@ export default {
 <style scoped>
 .page-header {
   color: #f7f9fb;
-  width: 55%;
+  width: 85%;
   margin: 3% auto;
   text-align: center;
 }
 
 .wip-entries-container {
-  margin-top: 0;
+  margin: 0 auto 25%;
   width: 75%;
 }
 

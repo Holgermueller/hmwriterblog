@@ -88,14 +88,14 @@ export default {
 
 <style scoped>
 .recent-post {
-  width: 55%;
+  width: 85%;
   margin: 3% auto 0;
   background-color: #f7f9fb;
 }
 
 .page-header {
   color: #f7f9fb;
-  width: 55%;
+  width: 85%;
   margin: 3% auto 0;
   text-align: center;
 }
