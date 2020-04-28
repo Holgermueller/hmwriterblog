@@ -1,6 +1,6 @@
 <template>
   <div id="mailingList">
-    <v-card class="mailing-list-content">
+    <v-card class="mailing-list-content" tile>
       <v-card-title class="display-2">Join the Mailing List!</v-card-title>
       <v-card-text>
         <div class="mailing-list-message title">
@@ -14,7 +14,7 @@
           ref="form"
           name="mailing-list"
           method="POST"
-          action="/mailingList/mailingList"
+          action="/mailingList/thanks"
           netlify
           netlify-honeypot="bot-field"
         >
@@ -23,40 +23,11 @@
             <label>Don't fill this out: <input name="bot-field" /> </label>
           </p>
 
-          <!-- <v-flex xs12 sm12 md12 lg12 xl12>
-            <v-text-field
-              type="text"
-              class="input-field"
-              label="Name"
-              name="name"
-              outlined
-            />
-          </v-flex> -->
-
           <label class="form-label" for="name">Name:</label>
           <input class="form-field" name="name" id="name" />
 
-          <!-- <v-flex xs12 sm12 md12 lg12 xl12>
-            <v-text-field
-              type="email"
-              class="input-field"
-              label="Email"
-              name="email"
-              outlined
-            />
-          </v-flex> -->
-
           <label class="form-label" for="email">Email:</label>
           <input class="form-field" name="email" id="email" />
-          <!-- <v-btn
-            ref="submit"
-            color="#31708e"
-            class="text--white"
-            x-large
-            tile
-            block
-            >Join!</v-btn
-          > -->
 
           <input class="form-button" type="submit" value="Join!" />
         </form>
@@ -79,5 +50,23 @@ export default {
 
 .hidden {
   display: none;
+}
+
+.form-field {
+  width: 100%;
+  height: 50px;
+  border: 1px solid lightgrey;
+  border-radius: 15px;
+  margin: 4px auto;
+}
+
+.form-button {
+  width: 100%;
+  height: 50px;
+  margin: 10px auto;
+  background-color: #31708e;
+  color: #f7f9fb;
+  font-size: 1rem;
+  font-weight: bold;
 }
 </style>
