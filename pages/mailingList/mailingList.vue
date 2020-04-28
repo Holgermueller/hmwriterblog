@@ -10,17 +10,20 @@
           </p>
         </div>
 
-        <v-form
+        <form
           ref="form"
-          name="mailingList"
+          name="mailing-list"
           method="POST"
           action="/mailingList/mailingList"
           netlify
           netlify-honeypot="bot-field"
         >
-          <input type="hidden" name="bot-field" value="contact" />
+          <input type="hidden" name="form-name" value="mailing-list" />
+          <p class="hidden">
+            <label>Don't fill this out: <input name="bot-field" /> </label>
+          </p>
 
-          <v-flex xs12 sm12 md12 lg12 xl12>
+          <!-- <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
               type="text"
               class="input-field"
@@ -28,9 +31,12 @@
               name="name"
               outlined
             />
-          </v-flex>
+          </v-flex> -->
 
-          <v-flex xs12 sm12 md12 lg12 xl12>
+          <label class="form-label" for="name">Name:</label>
+          <input class="form-field" name="name" id="name" />
+
+          <!-- <v-flex xs12 sm12 md12 lg12 xl12>
             <v-text-field
               type="email"
               class="input-field"
@@ -38,8 +44,11 @@
               name="email"
               outlined
             />
-          </v-flex>
-          <v-btn
+          </v-flex> -->
+
+          <label class="form-label" for="email">Email:</label>
+          <input class="form-field" name="email" id="email" />
+          <!-- <v-btn
             ref="submit"
             color="#31708e"
             class="text--white"
@@ -47,8 +56,10 @@
             tile
             block
             >Join!</v-btn
-          >
-        </v-form>
+          > -->
+
+          <input class="form-button" type="submit" value="Join!" />
+        </form>
       </v-card-text>
     </v-card>
   </div>
@@ -56,13 +67,7 @@
 
 <script>
 export default {
-  name: 'MailingList',
-
-  data() {
-    return {
-      email: ''
-    }
-  }
+  name: 'MailingList'
 }
 </script>
 
@@ -70,5 +75,9 @@ export default {
 .mailing-list-content {
   width: 85%;
   margin: auto;
+}
+
+.hidden {
+  display: none;
 }
 </style>
