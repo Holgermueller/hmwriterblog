@@ -24,12 +24,17 @@
           </p>
 
           <label class="form-label" for="name">Name:</label>
-          <input class="form-field" name="name" id="name" />
+          <input v-model="name" class="form-field" name="name" id="name" />
 
           <label class="form-label" for="email">Email:</label>
-          <input class="form-field" name="email" id="email" />
+          <input v-model="email" class="form-field" name="email" id="email" />
 
-          <input class="form-button" type="submit" value="Join!" />
+          <input
+            class="form-button"
+            type="submit"
+            value="Join!"
+            :disabled="name === '' || email === ''"
+          />
         </form>
       </v-card-text>
     </v-card>
@@ -38,7 +43,15 @@
 
 <script>
 export default {
-  name: 'MailingList'
+  name: 'MailingList',
+
+  data() {
+    return {
+      disabled: true,
+      name: '',
+      email: ''
+    }
+  }
 }
 </script>
 
@@ -58,6 +71,7 @@ export default {
   border: 1px solid lightgrey;
   border-radius: 15px;
   margin: 4px auto;
+  padding-left: 8px;
 }
 
 .form-button {
@@ -68,5 +82,9 @@ export default {
   color: #f7f9fb;
   font-size: 1rem;
   font-weight: bold;
+}
+
+.form-button:disabled {
+  background-color: lightgrey;
 }
 </style>
