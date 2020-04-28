@@ -1,6 +1,6 @@
 <template>
   <div id="thanks">
-    <v-card tile>
+    <v-card class="thank-you-card" tile>
       <v-card-title>
         Thanks for dropping us a line!
       </v-card-title>
@@ -25,6 +25,11 @@ export default {
 </script>
 
 <style scoped>
+.thank-you-card {
+  width: 85%;
+  margin: 8% auto;
+}
+
 a {
   text-decoration: none;
   width: 100%;
