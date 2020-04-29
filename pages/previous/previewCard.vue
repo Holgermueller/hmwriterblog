@@ -1,6 +1,6 @@
 <template>
   <div class="preview">
-    <v-col xs12 sm12 md12 lg4 xl4>
+    <v-col cols="12" xs12 sm12 md6 lg6 xl4>
       <v-hover v-slot:default="{ hover }">
         <v-card class="preview-card" :elevation="hover ? 12 : 2" tile>
           <nuxt-link class="link-to-article" :to="'/previous/' + id">
@@ -61,9 +61,8 @@ export default {
 .preview-card {
   background-color: transparent;
   margin: auto;
-  width: 95%;
+  width: 250px;
   height: 100%;
-  width: 100%;
 }
 
 .preview-card:hover {
@@ -84,6 +83,11 @@ a {
   background-color: #f7f9fb;
   height: 150px;
   color: #31708e;
+}
+
+.card-body:hover {
+  background-color: ghostwhite;
+  color: #000;
 }
 
 .tags {

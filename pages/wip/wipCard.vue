@@ -58,9 +58,8 @@ export default {
 .wip-preview-card {
   background-color: transparent;
   margin: auto;
-  width: 95%;
   height: 100%;
-  width: 100%;
+  width: 250px;
 }
 
 .wip-preview-card:hover {
@@ -81,6 +80,11 @@ a {
   background-color: #f7f9fb;
   height: 150px;
   color: #31708e;
+}
+
+.card-body:hover {
+  background-color: ghostwhite;
+  color: #000;
 }
 
 .tags {

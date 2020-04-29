@@ -13,9 +13,7 @@
     </section>
 
     <v-container class="previous-entries-container" fluid>
-      <!-- <v-layout row wrap>
-        <v-flex xs12 sm12 md6 lg4 xl4> -->
-      <v-row align="center" justify="center">
+      <v-row align="center" justify="center" dense>
         <PreviewCard
           v-for="post in posts"
           :key="post.id"
@@ -26,9 +24,6 @@
           :tags="post.tags"
         />
       </v-row>
-
-      <!-- </v-flex>
-      </v-layout> -->
     </v-container>
   </div>
 </template>
@@ -73,7 +68,7 @@ export default {
 <style scoped>
 .page-header {
   color: #f7f9fb;
-  width: 55%;
+  width: 85%;
   margin: 3% auto 0;
   text-align: center;
   padding: 0;

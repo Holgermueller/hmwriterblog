@@ -93,7 +93,7 @@ export default {
 <style scoped>
 .page-header {
   color: #f7f9fb;
-  width: 55%;
+  width: 85%;
   margin: 3% auto;
   text-align: center;
   padding: 0;
@@ -107,7 +107,7 @@ export default {
 
 .post-content {
   background-color: transparent;
-  width: 75%;
+  width: 85%;
   margin: auto;
 }
 

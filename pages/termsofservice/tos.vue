@@ -29,7 +29,7 @@ export default {
 }
 
 .page-content {
-  width: 75%;
+  width: 85%;
   margin: 2% auto;
 }
 </style>

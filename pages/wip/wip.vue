@@ -69,30 +69,11 @@ export default {
   width: 85%;
   margin: 3% auto;
   text-align: center;
+  padding: 0;
 }
 
 .wip-entries-container {
   margin: 0 auto 25%;
-  width: 75%;
-}
-
-.wip-preview-card {
-  background-color: transparent;
-  margin: 4%;
-}
-
-.card-title {
-  background-color: transparent;
-}
-
-.card-body {
-  margin: 0;
-  padding-top: 8px;
-  background-color: #f7f9fb;
-}
-
-.tags {
-  background-color: #31708e;
-  color: #f7f9fb;
+  align-content: center;
 }
 </style>
