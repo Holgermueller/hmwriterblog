@@ -44,7 +44,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/contentful/contentful', '~/plugins/posts/posts'],
   /*
    ** Nuxt.js dev-modules
    */
