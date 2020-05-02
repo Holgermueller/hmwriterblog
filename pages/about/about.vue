@@ -1,64 +1,55 @@
 <template>
   <div id="aboutPage">
-    <h1 class="page-header display-3 font-weight-bold">
-      {{ header }}
-    </h1>
+    <div v-for="about in aboutData.slice(0, 1)" :key="about.sys.id">
+      <h1 class="page-header display-3 font-weight-bold">
+        {{ about.fields.aboutHeader }}
+      </h1>
 
-    <v-card class="about-page" tile>
-      <v-card-subtitle class="font-weight-bold">
-        <h3>Or: {{ subTitle }}</h3>
-      </v-card-subtitle>
+      <v-card class="about-page" tile>
+        <v-card-subtitle class="font-weight-bold">
+          <h3>Or: {{ about.fields.subTitle }}</h3>
+        </v-card-subtitle>
 
-      <v-card-text>
-        <div v-html="aboutBody"></div>
-      </v-card-text>
+        <v-card-text>
+          <div>
+            {{ about.fields.aboutBodyRtf }}
+          </div>
+        </v-card-text>
 
-      <v-card-actions class="footer">
-        <h3>
-          <a href="https://twitter.com/thatHMMueller">
-            <span class="mdi mdi-twitter"></span
-          ></a>
-        </h3>
+        <v-card-actions class="footer">
+          <h3>
+            <a href="https://twitter.com/thatHMMueller">
+              <span class="mdi mdi-twitter"></span
+            ></a>
+          </h3>
 
-        <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
 
-        <h6 class="copy">&copy; 2020 Holger Mueller</h6>
+          <h6 class="copy">&copy; 2020 Holger Mueller</h6>
 
-        <v-spacer></v-spacer>
+          <v-spacer></v-spacer>
 
-        <h3>
-          <a href="https://www.instagram.com/holgerj9">
-            <span class="mdi mdi-instagram"></span
-          ></a>
-        </h3>
-      </v-card-actions>
-    </v-card>
+          <h3>
+            <a href="https://www.instagram.com/holgerj9">
+              <span class="mdi mdi-instagram"></span
+            ></a>
+          </h3>
+        </v-card-actions>
+      </v-card>
+    </div>
   </div>
 </template>
 
 <script>
-import { createClient } from '~/plugins/contentful/contentful'
-const contentfulClient = createClient()
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 export default {
   name: 'About',
 
-  asyncData({ data }) {
-    return Promise.all([
-      contentfulClient.getEntries({
-        content_type: 'about',
-        order: '-sys.id'
-      })
-    ])
-      .then(([page]) => {
-        return {
-          header: page.items[0].fields.aboutHeader,
-          aboutBody: documentToHtmlString(page.items[0].fields.aboutBodyRtf),
-          subTitle: page.items[0].fields.subTitle
-        }
-      })
-      .catch(console.error)
+  computed: {
+    aboutData() {
+      return this.$store.state.about
+    }
   }
 }
 </script>
