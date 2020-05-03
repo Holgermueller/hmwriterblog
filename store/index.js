@@ -3,7 +3,8 @@ const contentfulClient = createClient()
 
 export const state = () => ({
   posts: null,
-  about: null
+  about: null,
+  wip: null
 })
 
 export const mutations = {
@@ -13,6 +14,10 @@ export const mutations = {
 
   loadAbout: (state, payload) => {
     state.about = payload
+  },
+
+  loadWip: (state, payload) => {
+    state.wip = payload
   }
 }
 
@@ -38,6 +43,19 @@ export const actions = {
         order: '-sys.id'
       })
       if (response.items.length > 0) commit('loadAbout', response.items)
+    } catch (err) {
+      console.error(err)
+    }
+  },
+
+  async getWip({ commit }) {
+    try {
+      if (!contentfulClient) return
+      const response = await contentfulClient.getEntries({
+        content_type: 'workInProgress',
+        order: '-sys.createdAt'
+      })
+      if (response.items.length > 0) commit('loadWip', response.items)
     } catch (err) {
       console.error(err)
     }

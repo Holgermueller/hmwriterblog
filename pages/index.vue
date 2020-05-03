@@ -11,10 +11,10 @@
           <p>Listening to: {{ post.fields.listeningTo }}</p>
         </v-card-subtitle>
 
-        <v-divider></v-divider>
+        <v-divider />
 
         <v-card-text>
-          <div v-html="blogBody">{{ blogBody }}</div>
+          <div v-html="post.fields.rtfBlog"></div>
 
           <div>
             {{ post.fields.tags }}
@@ -58,10 +58,6 @@ export default {
   computed: {
     posts() {
       return this.$store.state.posts
-    },
-
-    blogBody() {
-      return this.$store.state.posts.rtfBlog
     }
   },
 

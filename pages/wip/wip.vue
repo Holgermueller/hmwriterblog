@@ -15,12 +15,12 @@
     <v-container class="wip-entries-container" fluid>
       <v-row align="center" justify="center">
         <wipCard
-          v-for="post in posts"
-          :key="post.id"
-          :title="post.title"
-          :id="post.id"
-          :description="post.description"
-          :dateAndTime="post.dateAndTime"
+          v-for="post in wips"
+          :key="post.sys.id"
+          :title="post.fields.title"
+          :id="post.sys.id"
+          :description="post.fields.description"
+          :dateAndTime="post.fields.dateAndTime"
         />
       </v-row>
     </v-container>
@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import { createClient } from '~/plugins/contentful/contentful'
-const contentfulClient = createClient()
 import wipCard from './wipCard'
 
 export default {
@@ -39,26 +37,10 @@ export default {
     wipCard
   },
 
-  asyncData({ data }) {
-    return Promise.all([
-      contentfulClient.getEntries({
-        content_type: 'workInProgress',
-        order: '-sys.createdAt'
-      })
-    ])
-      .then(([pages]) => {
-        return {
-          posts: pages.items.map(post => {
-            return {
-              id: post.sys.id,
-              title: post.fields.title,
-              description: post.fields.description,
-              dateAndTime: post.fields.dateAndTime
-            }
-          })
-        }
-      })
-      .catch(console.error)
+  computed: {
+    wips() {
+      return this.$store.state.wip
+    }
   }
 }
 </script>

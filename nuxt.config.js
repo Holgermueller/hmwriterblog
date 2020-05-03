@@ -47,7 +47,8 @@ export default {
   plugins: [
     '~/plugins/contentful/contentful',
     '~/plugins/posts/posts',
-    '~/plugins/about/about'
+    '~/plugins/about/about',
+    '~/plugins/wip/wip'
   ],
   /*
    ** Nuxt.js dev-modules
@@ -61,13 +62,13 @@ export default {
     '@nuxtjs/axios'
   ],
   env: {
-    CTF_SPACE_ID: process.env.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN,
-    CTF_ENVIRONMENT: process.env.CTF_ENVIRONMENT
+    // CTF_SPACE_ID: process.env.CTF_SPACE_ID,
+    // CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN,
+    // CTF_ENVIRONMENT: process.env.CTF_ENVIRONMENT
 
-    // CTF_SPACE_ID: contentfulConfig.CTF_SPACE_ID,
-    // CTF_CDA_ACCESS_TOKEN: contentfulConfig.CTF_CDA_ACCESS_TOKEN,
-    // CTF_ENVIRONMENT: contentfulConfig.CTF_ENVIRONMENT
+    CTF_SPACE_ID: contentfulConfig.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: contentfulConfig.CTF_CDA_ACCESS_TOKEN,
+    CTF_ENVIRONMENT: contentfulConfig.CTF_ENVIRONMENT
   },
   /*
    ** Axios module configuration

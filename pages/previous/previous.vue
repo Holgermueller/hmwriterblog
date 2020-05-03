@@ -16,12 +16,12 @@
       <v-row align="center" justify="center" dense>
         <PreviewCard
           v-for="post in posts"
-          :key="post.id"
-          :title="post.title"
-          :id="post.id"
-          :previewText="post.previewText"
-          :previewDate="post.previewDate"
-          :tags="post.tags"
+          :key="post.sys.id"
+          :title="post.fields.title"
+          :id="post.sys.id"
+          :previewText="post.fields.subtitle"
+          :previewDate="post.fields.dateTime"
+          :tags="post.fields.tags"
         />
       </v-row>
     </v-container>
@@ -29,8 +29,6 @@
 </template>
 
 <script>
-import { createClient } from '~/plugins/contentful/contentful'
-const contentfulClient = createClient()
 import PreviewCard from './previewCard'
 
 export default {
@@ -40,27 +38,10 @@ export default {
     PreviewCard
   },
 
-  asyncData({ data }) {
-    return Promise.all([
-      contentfulClient.getEntries({
-        content_type: 'blogPost',
-        order: '-sys.createdAt'
-      })
-    ])
-      .then(([pages]) => {
-        return {
-          posts: pages.items.map(post => {
-            return {
-              id: post.sys.id,
-              title: post.fields.title,
-              previewText: post.fields.subtitle,
-              previewDate: post.fields.dateTime,
-              tags: post.fields.tags
-            }
-          })
-        }
-      })
-      .catch(console.error)
+  computed: {
+    posts() {
+      return this.$store.state.posts
+    }
   }
 }
 </script>
