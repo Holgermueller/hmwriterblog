@@ -2,7 +2,7 @@
   <div class="post">
     <section class="page-header-section">
       <h1 class="page-header display-3 font-weight-bold white--text">
-        {{ title }}
+        {{ thisPost.fields.title }}
       </h1>
 
       <hr class="page-header font-weight-bold" />
@@ -11,15 +11,15 @@
         <ul class="info-list ">
           <li>
             When:
-            {{ dateTime | changeDateFilter }}
+            {{ thisPost.fields.dateTime | changeDateFilter }}
           </li>
           <li>
             Where:
-            {{ location }}
+            {{ thisPost.fields.location }}
           </li>
           <li>
             Listening to:
-            {{ listeningTo }}
+            {{ thisPost.fields.listeningTo }}
           </li>
         </ul>
       </h3>
@@ -27,10 +27,10 @@
 
     <v-card class="post-content" tile>
       <v-card-text class="card-body">
-        <div class="content" v-html="content"></div>
+        <div class="content" v-html="thisPost.fields.content"></div>
 
         <div class="tags">
-          {{ tags }}
+          {{ thisPost.fields.tags }}
         </div>
       </v-card-text>
 
@@ -45,8 +45,10 @@
         <v-spacer></v-spacer>
 
         <h6 class="copy">
-          <span>&copy; {{ dateTime | getOnlyYearFilter }} </span>
-          | {{ author }}
+          <span
+            >&copy; {{ thisPost.fields.dateTime | getOnlyYearFilter }}
+          </span>
+          | {{ thisPost.fields.author }}
         </h6>
       </v-card-actions>
     </v-card>
@@ -55,27 +57,22 @@
 
 <script>
 const moment = require('moment')
-import { createClient } from '~/plugins/contentful/contentful'
-const contentfulClient = createClient()
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 export default {
   name: 'SinglePreviousPost',
 
-  asyncData({ data, params }) {
-    return Promise.all([contentfulClient.getEntry(params.singlePostId)]).then(
-      ([page]) => {
-        return {
-          title: page.fields.title,
-          location: page.fields.location,
-          dateTime: page.fields.dateTime,
-          tags: page.fields.tags,
-          content: documentToHtmlString(page.fields.rtfBlog),
-          author: page.fields.author,
-          listeningTo: page.fields.listeningTo
-        }
-      }
-    )
+  data() {
+    return {
+      id: this.$route.params.singlePostId
+    }
+  },
+
+  computed: {
+    thisPost() {
+      let post = this.$store.state.posts.filter(el => el.sys.id === this.id)
+      return post[0]
+    }
   },
 
   filters: {
