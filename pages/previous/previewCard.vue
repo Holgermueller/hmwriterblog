@@ -16,7 +16,16 @@
           <v-card-text class="card-body font-regular">{{
             previewText
           }}</v-card-text>
-          <v-card-actions class="tags">{{ tags }}</v-card-actions>
+          <v-card-actions class="tags"
+            >{{ tags }}
+
+            <v-spacer></v-spacer>
+
+            <h6 class="copy">
+              <span>&copy; {{ previewDate | getOnlyYearFilter }} </span>
+              | {{ author }}
+            </h6>
+          </v-card-actions>
         </v-card>
       </v-hover>
     </v-col>
@@ -46,12 +55,20 @@ export default {
 
     tags: {
       type: String
+    },
+
+    author: {
+      type: String
     }
   },
 
   filters: {
     changeDateFilter: value => {
       return moment(value).format('dddd, Do MMM YYYY, LT')
+    },
+
+    getOnlyYearFilter: value => {
+      return moment(value).format('YYYY')
     }
   }
 }

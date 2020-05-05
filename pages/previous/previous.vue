@@ -22,6 +22,7 @@
           :previewText="post.fields.subtitle"
           :previewDate="post.fields.dateTime"
           :tags="post.fields.tags"
+          :author="post.fields.author"
         />
       </v-row>
     </v-container>

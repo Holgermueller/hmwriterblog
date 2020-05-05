@@ -21,6 +21,7 @@
           :id="post.sys.id"
           :description="post.fields.description"
           :dateAndTime="post.fields.dateAndTime"
+          :author="post.fields.author"
         />
       </v-row>
     </v-container>
