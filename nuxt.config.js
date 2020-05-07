@@ -59,7 +59,8 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/robots'
   ],
   env: {
     // CTF_SPACE_ID: process.env.CTF_SPACE_ID,
