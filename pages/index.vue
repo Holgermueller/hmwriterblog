@@ -14,7 +14,7 @@
         <v-divider />
 
         <v-card-text>
-          <div v-html="post.fields.rtfBlog"></div>
+          <div v-html="blog"></div>
 
           <div>
             {{ post.fields.tags }}
@@ -53,8 +53,6 @@ const moment = require('moment')
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 export default {
-  components: {},
-
   computed: {
     posts() {
       return this.$store.state.posts
