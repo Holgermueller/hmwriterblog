@@ -14,7 +14,7 @@
           </nuxt-link>
 
           <v-card-text class="card-body font-regular">{{
-            previewText
+            subtitle
           }}</v-card-text>
           <v-card-actions class="tags"
             >{{ tags }}
@@ -41,7 +41,7 @@ export default {
       type: String
     },
 
-    previewText: {
+    subtitle: {
       type: String
     },
 
