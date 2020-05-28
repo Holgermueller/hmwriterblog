@@ -2,19 +2,19 @@
   <div class="single-wip">
     <section class="page-header-section">
       <h1 class="page-header display-3 font-weight-bold white--text">
-        {{ thisPost.fields.title }}
+        {{ title }}
       </h1>
 
       <hr class="page-header font-weight-bold" />
 
       <h3 class="page-header title font-weight-bold">
-        {{ thisPost.fields.dateAndTime | changeDateFilter }}
+        {{ dateAndTime | changeDateFilter }}
       </h3>
     </section>
 
     <v-card class="post-content" tile>
       <v-card-text class="card-body">
-        <div class="content" v-html="thisPost.fields.wipBody"></div>
+        <div class="content" v-html="blogPost"></div>
       </v-card-text>
 
       <v-card-actions class="footer">
@@ -28,10 +28,8 @@
         <v-spacer></v-spacer>
 
         <h6 class="copy">
-          <span
-            >&copy; {{ thisPost.fields.dateAndTime | getOnlyYearFilter }}
-          </span>
-          | {{ thisPost.fields.author }}
+          <span>&copy; {{ dateAndTime | getOnlyYearFilter }} </span>
+          | {{ author }}
         </h6>
       </v-card-actions>
     </v-card>
@@ -40,22 +38,24 @@
 
 <script>
 const moment = require('moment')
+import { createClient } from '~/plugins/contentful/contentful'
+const contentfulClient = createClient()
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 
 export default {
   Name: 'SingleWIPPost',
 
-  data() {
-    return {
-      id: this.$route.params.singleWIPId
-    }
-  },
-
-  computed: {
-    thisPost() {
-      let post = this.$store.state.wip.filter(el => el.sys.id === this.id)
-      return post[0]
-    }
+  asyncData({ data, params }) {
+    return Promise.all([contentfulClient.getEntry(params.singleWIPId)]).then(
+      ([page]) => {
+        return {
+          title: page.fields.title,
+          author: page.fields.author,
+          dateAndTime: page.fields.dateAndTime,
+          blogPost: documentToHtmlString(page.fields.wipBody)
+        }
+      }
+    )
   },
 
   filters: {
