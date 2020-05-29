@@ -1,7 +1,7 @@
 <template>
   <div id="tos">
     <section>
-      <h1 class="page-header">Terms of Service</h1>
+      <h1 class="display-2 page-header">Terms of Service</h1>
     </section>
 
     <v-card class="page-content" tile>

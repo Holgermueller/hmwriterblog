@@ -86,19 +86,19 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-home',
           title: 'Home',
           to: '/'
-        },
-        {
-          icon: 'mdi-progress-wrench',
-          title: 'Works In Progress',
-          to: '/wip/wip'
         },
         {
           icon: 'mdi-pencil-outline',
           title: 'Previous Writings',
           to: '/previous/previous'
+        },
+        {
+          icon: 'mdi-progress-wrench',
+          title: 'Works In Progress',
+          to: '/wip/wip'
         },
         {
           icon: 'mdi-book-account',
@@ -140,6 +140,8 @@ export default {
 .app-background {
   background-image: url('~assets/backgroundimage.png');
   background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .nav-drawer {

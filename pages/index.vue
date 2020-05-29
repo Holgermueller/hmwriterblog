@@ -1,19 +1,24 @@
 <template>
   <div id="home">
-    <h1 class="page-header display-3 font-weight-bold">
-      {{ title }}
-    </h1>
+    <section class="page-header-section">
+      <h1 class="page-header display-3 font-weight-bold">
+        {{ title }}
+      </h1>
+
+      <hr class="page-header font-weight-bold" />
+
+      <h3 class="page-header title font-weight-bold">
+        <ul class="info-list">
+          <li>Location: {{ location }}</li>
+          <li>Date: {{ dateTime | changeDateFilter }}</li>
+          <li>Listening to: {{ listeningTo }}</li>
+        </ul>
+      </h3>
+    </section>
+
     <v-card class="recent-post" tile>
-      <v-card-subtitle>
-        <p>Location: {{ location }}</p>
-        <p>Date: {{ dateTime | changeDateFilter }}</p>
-        <p>Listening to: {{ listeningTo }}</p>
-      </v-card-subtitle>
-
-      <v-divider />
-
       <v-card-text>
-        <div v-html="blogbody"></div>
+        <div class="landing-post" v-html="blogbody"></div>
 
         <div>
           {{ tags }}
@@ -95,8 +100,18 @@ export default {
   text-align: center;
 }
 
+.info-list {
+  background-color: transparent;
+  list-style-type: none;
+  text-align: left;
+}
+
 a {
   color: ghostwhite !important;
+}
+
+.landing-post {
+  color: #080808;
 }
 
 .copy {

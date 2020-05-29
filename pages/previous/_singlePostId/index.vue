@@ -115,6 +115,10 @@ export default {
   background-color: #f7f9fb;
 }
 
+.content {
+  color: #080808;
+}
+
 .tags {
   bottom: 0;
   margin-top: 1%;

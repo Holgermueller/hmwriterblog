@@ -1,7 +1,7 @@
 <template>
   <div id="contactPage">
     <v-card class="page-content" tile>
-      <v-card-title>Contact Us</v-card-title>
+      <v-card-title class="display-2">Contact Us</v-card-title>
       <v-card-text>
         <form
           ref="form"

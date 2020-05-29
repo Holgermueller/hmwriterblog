@@ -10,7 +10,7 @@
       </v-card-subtitle>
 
       <v-card-text>
-        <div v-html="aboutBody"></div>
+        <div class="about-content" v-html="aboutBody"></div>
       </v-card-text>
 
       <v-card-actions class="footer">
@@ -75,6 +75,10 @@ export default {
   width: 85%;
   margin: 2% auto;
   background-color: #f7f9fb;
+}
+
+.about-content {
+  color: #080808;
 }
 
 a,

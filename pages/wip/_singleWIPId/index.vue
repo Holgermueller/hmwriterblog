@@ -93,6 +93,10 @@ export default {
   background-color: #f7f9fb;
 }
 
+.content {
+  color: #080808;
+}
+
 .copy {
   text-align: center;
   padding: 0;
