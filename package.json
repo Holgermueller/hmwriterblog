@@ -19,13 +19,13 @@
     "contentful": "^7.14.6",
     "contentful-rich-text-vue-renderer": "^1.1.5",
     "dotenv": "^8.2.0",
-    "firebase": "^7.20.0",
+    "firebase": "^7.21.0",
     "nuxt": "^2.14.5"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.2",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "prettier": "^2.1.1"
+    "prettier": "^2.1.2"
   }
 }
